@@ -65,6 +65,7 @@ Built by `src/dataset_prep.py`, which:
 **Load method (identical across platforms):** driver-side batched `UNWIND`/AQL bulk insert via `src/loader.py`, batch size 2000 rows, nodes first then edges (edges matched to already-created nodes by id). No platform-specific bulk-import tool was used, so the load numbers measure driver-batched ingest specifically — call out if a platform's native bulk loader would materially change this (e.g. `neo4j-admin import`) and note that native bulk tools were intentionally excluded to keep the load *method* identical across platforms, not just the data.
 
 ## 4. Fairness: resource parity
+<img width="1814" height="322" alt="Screenshot 2026-08-07 202014" src="https://github.com/user-attachments/assets/c54aa488-8d59-45d6-ac6e-bfd50314c1b9" />
 
 | Platform | vCPU | RAM | Storage | Region | Caveats |
 |---|---|---|---|---|---|
@@ -135,24 +136,32 @@ Any platform without credentials in `.env` is automatically skipped (not failed)
 | Platform | Nodes/sec | Rels/sec | Total load time | Notes |
 |----------|-----------|----------|-----------------|-------|
 | CognoDB Cloud (c0 free) | 2324.2 | 1729.7 | 131.168s | Free tier (0.5 vCPU, 256 MB RAM) |
+<img width="1864" height="660" alt="Screenshot 2026-08-07 202042" src="https://github.com/user-attachments/assets/cb07a8d3-980f-460e-8bc1-19a14a00c4c6" />
+
 
 ### Traversals (p50 / p95, ms)
 
 | Platform | 1-hop p50/p95 | 2-hop p50/p95 | 3-hop p50/p95 |
 |----------|---------------|---------------|---------------|
 | CognoDB Cloud (c0 free) | 264.25 / 267.19 | 264.14 / 274.70 | 264.24 / 283.61 |
+<img width="1719" height="589" alt="Screenshot 2026-08-07 202104" src="https://github.com/user-attachments/assets/2c8591b1-bb2f-4284-9df4-482efd680a49" />
+
 
 ### Lookups (p50 / p95, ms)
 
 | Platform | Point lookup | Indexed/filtered lookup | Indexed properties |
 |----------|--------------|-------------------------|-------------------|
 | CognoDB Cloud (c0 free) | 264.28 / 280.43 | 279.40 / 856.13 | movie_id, person_id, year |
+<img width="1835" height="646" alt="Screenshot 2026-08-07 202121" src="https://github.com/user-attachments/assets/3fcd82e9-1685-489d-bcbd-a77841ef261d" />
+
 
 ### Aggregation (p50 / p95, ms)
 
 | Platform | Count-by-category |
 |----------|------------------|
 | CognoDB Cloud (c0 free) | 1382.62 / 1631.94 |
+<img width="973" height="639" alt="Screenshot 2026-08-07 202135" src="https://github.com/user-attachments/assets/69ea1aee-6bef-4e91-8c45-7a2b8e4485e3" />
+
 
 ### Mixed workload (80/20 read/write, concurrency sweep)
 
@@ -162,11 +171,14 @@ Any platform without credentials in `.env` is automatically skipped (not failed)
 | CognoDB Cloud (c0 free) | 10 | 33.93 | 317.69 ms |
 | CognoDB Cloud (c0 free) | 40 | 70.67 | 1105.65 ms |
 
+<img width="1805" height="577" alt="Screenshot 2026-08-07 202150" src="https://github.com/user-attachments/assets/f5078cb6-9c4e-4e20-8e03-0cde66654604" />
+
 ### Footprint
 
 | Platform | Node count | Rel count | Storage/memory |
 |----------|------------|-----------|----------------|
 | CognoDB Cloud (c0 free) | 170,490 | 99,989 | Not exposed via Cypher driver |
+<img width="905" height="665" alt="Screenshot 2026-08-07 202159" src="https://github.com/user-attachments/assets/988effb0-2894-45d7-b98d-5f67b4acc777" />
 
 
 ## 8. Analysis
