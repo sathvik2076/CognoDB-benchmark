@@ -47,6 +47,12 @@ results/                     JSON output per platform + combined results.json (g
 **Source:** [IMDb non-commercial datasets](https://datasets.imdbws.com/) (free for personal/non-commercial use, updated daily by IMDb — see [terms](https://www.imdb.com/interfaces/)).
 
 **Graph shape:** `(:Person)-[:ACTED_IN {ordering, category}]->(:Movie {year, genres, runtime_minutes})`
+<img width="851" height="553" alt="Screenshot 2026-08-07 200431" src="https://github.com/user-attachments/assets/ec7fbd05-2fbf-4f32-8aea-c5a9fa6ef589" />
+<img width="1915" height="605" alt="Screenshot 2026-08-07 195840" src="https://github.com/user-attachments/assets/55ef03cb-8345-4db6-b425-9e717f5fd777" />
+<img width="1286" height="629" alt="Screenshot 2026-08-07 200344" src="https://github.com/user-attachments/assets/bef22428-fa8e-482f-b6fa-f09b5c6f4522" />
+<img width="850" height="543" alt="Screenshot 2026-08-07 200407" src="https://github.com/user-attachments/assets/bef05050-7263-4933-8b90-e1ac4a40e643" />
+<img width="858" height="530" alt="Screenshot 2026-08-07 200419" src="https://github.com/user-attachments/assets/65c6111a-0dfb-4479-b4d8-905cf7525ea8" />
+
 
 Built by `src/dataset_prep.py`, which:
 1. Downloads `title.basics.tsv.gz`, `name.basics.tsv.gz`, `title.principals.tsv.gz`.
